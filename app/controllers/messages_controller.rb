@@ -14,8 +14,9 @@ class MessagesController < ApplicationController
         client = RestClient.new(auth_id.to_s, auth_token.to_s)
         message_created = client.messages.create(
             '+15125185935',
-            %w[+15127448789],
-            '12 12 12 '
+            `+#{params[:yourphone]}`,
+            # %w[+15127448789],
+            `+#{params[:content]}`
         )
 
         if message.valid?
@@ -36,7 +37,7 @@ class MessagesController < ApplicationController
 
     private
         def message_params
-            params.require(:message).permit(:content, :outbound, :inbound)
+            params.require(:message).permit(:content, :myphone, :yourphone, :isoutgoing)
         end
 
 end

@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_155506) do
+ActiveRecord::Schema.define(version: 2020_10_23_160133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.boolean "outbound"
-    t.boolean "inbound"
+    t.bigint "myphone"
+    t.bigint "yourphone"
+    t.boolean "isoutgoing"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

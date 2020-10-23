@@ -2,10 +2,12 @@
 
 one:
   content: MyString
-  outbound: false
-  inbound: false
+  boolean: 
+  integer: 
+  integer: 
 
 two:
   content: MyString
-  outbound: false
-  inbound: false
+  boolean: 
+  integer: 
+  integer: 
