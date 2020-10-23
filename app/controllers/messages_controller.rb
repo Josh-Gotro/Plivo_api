@@ -1,10 +1,8 @@
 class MessagesController < ApplicationController
 
     def index
-        auth_id = Rails.application.credentials.plivo[:auth_id]
-        auth_token = Rails.application.credentials.plivo[:auth_token]
         messages = Message.all
-        render json: auth_id.to_s
+        render json: messages.to_json
     end
 
     def create 
