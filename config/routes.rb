@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :messages
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #RESTful routes
+  resources :messages, only: [:index]
+
+  #Custom routes
+  post 'send', to: 'messages#send_sms'
+  post 'accept', to: 'messages#accept_sms'
+  get 'smslog', to: 'messages#log_sms'
+
+  #Websockets
+  mount ActionCable.server => '/cable'
 end
