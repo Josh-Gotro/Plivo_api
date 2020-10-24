@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   #Custom routes
   post 'send', to: 'messages#send_sms'
   post 'accept', to: 'messages#accept_sms'
-  get 'smslog', to: 'messages#log_sms'
-
+  
   #Websockets
   mount ActionCable.server => '/cable'
 end
