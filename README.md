@@ -96,13 +96,20 @@ ngrok http 8000
 - Scroll down to the "Message" section and make sure "Post" is selected from the drop-down. 
 - Paste the ngrok url under "Message URL"
 - Click "Update Application"
+___
 ***
 ***
-***Congrats! You have the back-end set up. Now head over [here](https://github.com/Josh-Gotro/Plivo_client) to install the front-end***
+***Congrats!*** 
+
+You have the back-end set up. 
+
+Now head over [here](https://github.com/Josh-Gotro/Plivo_client) to install the front-end.
+
 ***
 ***
 
 
+___
 # About
 ## Technologies Used in This Project
 **Plivo Messaging API**
@@ -110,10 +117,14 @@ ngrok http 8000
 - Recieve Text in Real Time
 - Retrieve Records by Date-range
 
-**Rails 6**
+**Rails 6 (back-end)**
 - JSON API 
 - Action Cable Web Sockets
 - Encrypted Secrets 
+
+**React (front-end)**
+- [React Hook Form](https://react-hook-form.com/)
+- [Actioncable Provider](https://www.npmjs.com/package/react-actioncable-provider)
 
 **Ngrok**
 - Expose Localhost Server to the Internet
