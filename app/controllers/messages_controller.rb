@@ -52,21 +52,19 @@ class MessagesController < ApplicationController
         response = client.messages.list(
             message_time__gte: message_params[:gte],
             message_time__lte: message_params[:lte],
-            limit: 5,
+            limit: 20,
             offset: 0,
         )
         uuids = response[:objects].map {|msg| msg.message_uuid}
-        
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts Message.first.MessageUUID
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-
         messages = uuids.map do |uuid| 
-        
             # binding.pry
             Message.find_by(MessageUUID: uuid)
         end
         
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts messages
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
 
         render json: messages
 
