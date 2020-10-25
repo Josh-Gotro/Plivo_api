@@ -1,5 +1,5 @@
 # Send an SMS -- API
-
+___
 Welcome! 
 
 Follow these instructions to setup the back-end for this app. 
@@ -47,7 +47,7 @@ ___
 - Click "Update Number"
 - Search [Applications](https://console.plivo.com/sms/applications/) for your application and click it. 
 - Bookmark this page for future use. 
-___
+***
 ### Download and Configure this app
  *Install app and start server*
 - Clone this repository and navigate into the directory. 
@@ -96,11 +96,11 @@ ngrok http 8000
 - Scroll down to the "Message" section and make sure "Post" is selected from the drop-down. 
 - Paste the ngrok url under "Message URL"
 - Click "Update Application"
-___
-___
+***
+***
 ***Congrats! You have the back-end set up. Now head over [here](https://github.com/Josh-Gotro/Plivo_client) to install the front-end***
-___
-___
+***
+***
 
 
 # About
