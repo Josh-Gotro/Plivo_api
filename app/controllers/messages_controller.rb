@@ -44,9 +44,39 @@ class MessagesController < ApplicationController
         end
     end
 
+    def log_sms
+        auth_id = Rails.application.credentials.plivo[:auth_id]
+        auth_token = Rails.application.credentials.plivo[:auth_token]
+        client = RestClient.new(auth_id.to_s, auth_token.to_s)
+
+        response = client.messages.list(
+            message_time__gte: message_params[:gte],
+            message_time__lte: message_params[:lte],
+            limit: 5,
+            offset: 0,
+        )
+        uuids = response[:objects].map {|msg| msg.message_uuid}
+        
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts Message.first.MessageUUID
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+        messages = uuids.map do |uuid| 
+        
+            # binding.pry
+            Message.find_by(MessageUUID: uuid)
+        end
+        
+
+        render json: messages
+
+        # uuids = response[:objects]
+
+    end
+
 private
     def message_params
         # params.require(:message).permit(:content, :myphone, :yourphone, :isoutgoing)
-            params.permit(:content, :myphone, :yourphone, :isoutgoing, :From, :MessageIntent, :MessageUUID, :PowerpackUUID, :Text, :To, :TotalAmount, :TotalRate, :Type, :Units)
+            params.permit(:message_time__gte, :message_time__lte, :gte, :lte, :content, :myphone, :yourphone, :isoutgoing, :From, :MessageIntent, :MessageUUID, :PowerpackUUID, :Text, :To, :TotalAmount, :TotalRate, :Type, :Units)
     end
 end
