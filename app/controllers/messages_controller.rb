@@ -50,8 +50,8 @@ class MessagesController < ApplicationController
         client = RestClient.new(auth_id.to_s, auth_token.to_s)
 
         response = client.messages.list(
-            message_time__gte: message_params[:gte],
             message_time__lte: message_params[:lte],
+            message_time__gte: message_params[:gte],
             limit: 20,
             offset: 0,
         )
