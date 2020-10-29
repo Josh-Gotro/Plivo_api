@@ -62,7 +62,8 @@ class MessagesController < ApplicationController
             # binding.pry
             Message.find_by(MessageUUID: uuid)
         end
-        render json: messages
+        # render json: messages
+        render json: response
     end
 
 private
