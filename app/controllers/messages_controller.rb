@@ -56,14 +56,17 @@ class MessagesController < ApplicationController
             limit: 20,
             offset: 0,
         )
+        puts "!!!!!!!!!!!!!!!!"
+        puts response
+        puts "!!!!!!!!!!!!!!!!!!"
         # map over returned records and search local records for SMS that match MessageUUID
         uuids = response[:objects].map {|msg| msg.message_uuid}
         messages = uuids.map do |uuid| 
             # binding.pry
             Message.find_by(MessageUUID: uuid)
         end
-        # render json: messages
-        render json: response
+        render json: messages
+        # render json: response
     end
 
 private
