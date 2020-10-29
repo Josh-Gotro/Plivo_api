@@ -4,6 +4,6 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # raise NotImplementedError
+    raise NotImplementedError
   end
 end
