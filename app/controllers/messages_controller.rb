@@ -15,21 +15,6 @@ class MessagesController < ApplicationController
     end
 
     def send_mms
-        puts params
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"        
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        puts message_params
-                # Create outgoing message from client request. 
-        message = Message.create(
-            MessageUUID: message_params[:MessageUUID],
-            From: message_params[:From], 
-            To: message_params[:To], 
-            isoutgoing: true)
-
         message_created = CLIENT.messages.create(
             message_params[:To], 
             [message_params[:From]], 
@@ -42,6 +27,15 @@ class MessagesController < ApplicationController
         puts "***********************************"        
         puts "***********************************"
         puts "***********************************"
+
+        puts message_params
+                # Create outgoing message from client request. 
+        message = Message.create(
+            MessageUUID: message_params[:MessageUUID],
+            From: message_params[:From], 
+            To: message_params[:To], 
+            isoutgoing: true)
+
 
         
             # response = Response.new
