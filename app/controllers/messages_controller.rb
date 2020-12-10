@@ -77,20 +77,20 @@ class MessagesController < ApplicationController
         end 
     end
     
-    def accept_sms
-        # Accept incoming message and persist to local API
-        message = Message.create(
-            MessageUUID: message_params[:MessageUUID],
-            Text: message_params[:Text], 
-            From: message_params[:From], 
-            To: params[:To], 
-            isoutgoing: false)
+    # def accept_sms
+    #     # Accept incoming message and persist to local API
+    #     message = Message.create(
+    #         MessageUUID: message_params[:MessageUUID],
+    #         Text: message_params[:Text], 
+    #         From: message_params[:From], 
+    #         To: params[:To], 
+    #         isoutgoing: false)
 
-        # If no errors occur in new message, broadcast to React client.  
-        if message.valid?
-            ActionCable.server.broadcast 'messages_channel', message
-        end
-    end
+    #     # If no errors occur in new message, broadcast to React client.  
+    #     if message.valid?
+    #         ActionCable.server.broadcast 'messages_channel', message
+    #     end
+    # end
 
     def log_sms
         # Request message detail records for range: <= & >=  dates provided.
