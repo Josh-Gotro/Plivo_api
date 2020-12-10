@@ -1,7 +1,7 @@
 include Plivo
 
-include Plivo::XML
-include Plivo::Exceptions
+# include Plivo::XML
+# include Plivo::Exceptions
 
 class MessagesController < ApplicationController
     skip_before_action :verify_authenticity_token
