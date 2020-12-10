@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
         message_created = CLIENT.messages.create(
             message_params[:From], 
             [message_params[:To]], 
-            "Thanks!")
+            "U da bomb.biz!")
 
         puts "***********************************"
         puts "***********************************"
