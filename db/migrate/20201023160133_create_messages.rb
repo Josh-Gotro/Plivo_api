@@ -2,6 +2,7 @@ class CreateMessages < ActiveRecord::Migration[6.0]
   def change
     create_table :messages do |t|
       t.string :MessageUUID
+      t.string :Gif
       t.string :Text
       t.bigint :From
       t.bigint :To
