@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
             Gif: message_params[:Body],
             isoutgoing: false)
 
-        begin
+        
             response = Response.new
 
             params = {
@@ -39,7 +39,6 @@ class MessagesController < ApplicationController
             puts xml.to_xml
             rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
-        end
 
     end
 
