@@ -6,6 +6,7 @@ class CreateMessages < ActiveRecord::Migration[6.0]
       t.bigint :From
       t.bigint :To
       t.boolean :isoutgoing
+      t.string :Gif
 
       t.timestamps
     end
