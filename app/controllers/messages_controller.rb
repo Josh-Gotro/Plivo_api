@@ -1,9 +1,10 @@
 include Plivo
 
-include Plivo::XML
-include Plivo::Exceptions
+
 
 class MessagesController < ApplicationController
+    include Plivo::XML
+    include Plivo::Exceptions
     skip_before_action :verify_authenticity_token
     auth_id = Rails.application.credentials.altplivo[:auth_id]
     auth_token = Rails.application.credentials.altplivo[:auth_token]
