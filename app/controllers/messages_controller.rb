@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
                 message_params[:From], 
                 [message_params[:To]], 
                 message_params[:Text],
-                {media_urls: `[#{message_params[:MediaUrl]}]`},
+                {media_urls: `[#{message_params[:MediaUrl]},]`},
             )
 
         # Attach returned MessagueUUID to local record
