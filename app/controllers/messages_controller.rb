@@ -16,8 +16,6 @@ class MessagesController < ApplicationController
         message = Message.new(
             MessageUUID: "",
             To: message_params[:To], 
-            type: "mms",
-            {media_urls: ['https://i.imgur.com/2CMKzdp.gif']},
             Text: message_params[:Text], 
             From: message_params[:From], 
             isoutgoing: message_params[:isoutgoing])
