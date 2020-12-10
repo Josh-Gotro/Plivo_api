@@ -1,7 +1,7 @@
 include Plivo
 
-# include Plivo::XML
-# include Plivo::Exceptions
+include Plivo::XML
+include Plivo::Exceptions
 
 class MessagesController < ApplicationController
     skip_before_action :verify_authenticity_token
@@ -15,15 +15,15 @@ class MessagesController < ApplicationController
     end
 
     def send_mms
-        message_created = CLIENT.messages.create(
-            message_params[:From], 
-            [message_params[:To]], 
-            "U da bomb.biz!")
+        # message_created = CLIENT.messages.create(
+        #     message_params[:From], 
+        #     [message_params[:To]], 
+        #     "U da bomb.biz!")
 
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
+                puts "!!!!!!!!"
+                puts "!!!!!!!!"
+                puts "!!!!!!!!"
+                puts "!!!!!!!!"
             response = Response.new
 
             prms = {
