@@ -12,28 +12,28 @@ class MessagesController < ApplicationController
     end
 
     def send_sms
-        if message_params[:MediaUrl] == ""
+        # if message_params[:MediaUrl] == ""
 
-            # Create outgoing message from client request. 
-            message = Message.new(
-                MessageUUID: "",
-                To: message_params[:To], 
-                Text: message_params[:Text], 
-                From: message_params[:From], 
-                isoutgoing: message_params[:isoutgoing])
+        #     # Create outgoing message from client request. 
+        #     message = Message.new(
+        #         MessageUUID: "",
+        #         To: message_params[:To], 
+        #         Text: message_params[:Text], 
+        #         From: message_params[:From], 
+        #         isoutgoing: message_params[:isoutgoing])
 
-            # If no errors, Post message to Plivo API.
-            if message.valid?
-                message_created = CLIENT.messages.create(
-                    message_params[:From], 
-                    [message_params[:To]], 
-                    message_params[:Text])
+        #     # If no errors, Post message to Plivo API.
+        #     if message.valid?
+        #         message_created = CLIENT.messages.create(
+        #             message_params[:From], 
+        #             [message_params[:To]], 
+        #             message_params[:Text])
 
-            # Attach returned MessagueUUID to local record
-                message.update(MessageUUID: message_created.message_uuid[0])
-                render json: message
-            end 
-        else
+        #     # Attach returned MessagueUUID to local record
+        #         message.update(MessageUUID: message_created.message_uuid[0])
+        #         render json: message
+        #     end 
+        # else
             # Create outgoing message uncluding gif url. 
             message = Message.new(
                 MessageUUID: "",
@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
                 message.update(MessageUUID: message_created.message_uuid[0])
                 render json: message
             end 
-        end
+        # end
     end
     
     def accept_sms
