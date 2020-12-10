@@ -13,25 +13,21 @@ class MessagesController < ApplicationController
 
     def send_mms
                 # Create outgoing message from client request. 
-        message = Message.new(
-            MessageUUID: "",
-            To: message_params[:To], 
+        message = Message.create(
+            MessageUUID: message_params[:MessageUUID],
             Text: message_params[:Text], 
             From: message_params[:From], 
-            Gif: message_params[:MediaUrl],
-            isoutgoing: message_params[:isoutgoing])
+            To: params[:To], 
+            Gif: params[:Body],
+            isoutgoing: false)
 
         if message.valid?
             message_created = CLIENT.messages.create(
-                message_params[:From], 
-                [message_params[:To]], 
-                message_params[:Text],
-                {media_urls: `[#{message_params[:MediaUrl]},]`},
+                :To, 
+                [:From], 
+                "Thanks Homie!",
             )
 
-            # Attach returned MessagueUUID to local record
-            message.update(MessageUUID: message_created.message_uuid[0])
-            render json: message
         end
 
     end
