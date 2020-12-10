@@ -18,10 +18,10 @@ class MessagesController < ApplicationController
                 # Create outgoing message from client request. 
         message = Message.create(
             MessageUUID: message_params[:MessageUUID],
-            Text: message_params[:Text], 
+            Text: message_params[:text], 
             From: message_params[:From], 
             To: message_params[:To], 
-            Gif: message_params[:Body],
+            Gif: message_params[:media_urls[0]],
             isoutgoing: false)
 
         
@@ -113,12 +113,14 @@ private
                 :MessageUUID, 
                 :PowerpackUUID, 
                 :Text, 
+                :text,
                 :To, 
                 :TotalAmount, 
                 :TotalRate, 
                 :Type, 
                 :Units,
                 :MediaUrl,
+                :media_urls,
                 :Body
             )
     end
