@@ -29,9 +29,10 @@ class MessagesController < ApplicationController
                 {media_urls: `[#{message_params[:MediaUrl]},]`},
             )
 
-        # Attach returned MessagueUUID to local record
-        message.update(MessageUUID: message_created.message_uuid[0])
-        render json: message
+            # Attach returned MessagueUUID to local record
+            message.update(MessageUUID: message_created.message_uuid[0])
+            render json: message
+        end
 
     end
 
