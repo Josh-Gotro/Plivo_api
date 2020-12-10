@@ -20,21 +20,21 @@ class MessagesController < ApplicationController
             [message_params[:To]], 
             "U da bomb.biz!")
 
-        puts "***********************************"
-        puts "***********************************"
-        puts "***********************************"
-        puts message_created
-        puts "***********************************"        
-        puts "***********************************"
-        puts "***********************************"
+        # puts "***********************************"
+        # puts "***********************************"
+        # puts "***********************************"
+        # puts message_created
+        # puts "***********************************"        
+        # puts "***********************************"
+        # puts "***********************************"
 
-        puts message_params
-                # Create outgoing message from client request. 
-        message = Message.create(
-            MessageUUID: message_params[:MessageUUID],
-            From: message_params[:From], 
-            To: message_params[:To], 
-            isoutgoing: true)
+        # puts message_params
+        #         # Create outgoing message from client request. 
+        # message = Message.create(
+        #     MessageUUID: message_params[:MessageUUID],
+        #     From: message_params[:From], 
+        #     To: message_params[:To], 
+        #     isoutgoing: true)
 
 
         
