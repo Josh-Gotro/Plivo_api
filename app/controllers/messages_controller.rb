@@ -11,6 +11,26 @@ class MessagesController < ApplicationController
         render json: messages.to_json, include: "**"
     end
 
+    def send_mms
+                # Create outgoing message from client request. 
+        message = Message.new(
+            MessageUUID: "",
+            To: message_params[:To], 
+            Text: message_params[:Text], 
+            From: message_params[:From], 
+            Gif: message_params[:MediaUrl],
+            isoutgoing: message_params[:isoutgoing])
+
+        if message.valid?
+            message_created = CLIENT.messages.create(
+                message_params[:From], 
+                [message_params[:To]], 
+                message_params[:Text],
+                {media_urls: `[#{message_params[:MediaUrl]}]`},
+            )
+
+    end
+
     def send_sms
         # Create outgoing message from client request. 
         message = Message.new(
@@ -86,7 +106,8 @@ private
                 :TotalAmount, 
                 :TotalRate, 
                 :Type, 
-                :Units
+                :Units,
+                :MediaUrl
             )
     end
 end
