@@ -15,30 +15,43 @@ class MessagesController < ApplicationController
     end
 
     def send_mms
+        print(params)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")        
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(message_params)
                 # Create outgoing message from client request. 
         message = Message.create(
             MessageUUID: message_params[:MessageUUID],
-            Text: message_params[:text], 
+            Text: message_params[:Text], 
             From: message_params[:From], 
             To: message_params[:To], 
             Gif: message_params[:media_urls[0]],
-            isoutgoing: false)
+            isoutgoing: true)
+
+        message_created = CLIENT.messages.create(
+            message_params[:To], 
+            [message_params[:From]], 
+            "Thanks for the message!")
 
         
             response = Response.new
 
-            prms = {
-                src: message_params[:To],
-                dst: message_params[:From],
-                type: 'sms',
-            }
-            message_body = 'Hi, Message from Plivo'
-            response.addMessage(message_body, prms)
+            # prms = {
+            #     src: message_params[:To],
+            #     dst: message_params[:From],
+            #     type: 'sms',
+            # }
+            # message_body = 'Hi, Message from Plivo'
+            # response.addMessage(message_body, prms)
 
-            xml = PlivoXML.new(response)
-            puts xml.to_xml
-            rescue PlivoXMLError => e
-            puts 'Exception: ' + e.message
+            # xml = PlivoXML.new(response)
+            # puts xml.to_xml
+            # rescue PlivoXMLError => e
+            # puts 'Exception: ' + e.message
 
     end
 
