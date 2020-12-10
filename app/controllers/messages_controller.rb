@@ -16,8 +16,8 @@ class MessagesController < ApplicationController
 
     def send_mms
         message_created = CLIENT.messages.create(
-            message_params[:To], 
-            [message_params[:From]], 
+            message_params[:From], 
+            [message_params[:To]], 
             "Thanks!")
 
         puts "***********************************"
