@@ -28,8 +28,8 @@ class MessagesController < ApplicationController
             response = Response.new
 
             prms = {
-                src: message_params[:To],
-                dst: message_params[:From],
+                src: message_params[:From],
+                dst: message_params[:To],
                 type: 'sms',
             }
 
