@@ -20,6 +20,27 @@ class MessagesController < ApplicationController
             [message_params[:To]], 
             "U da bomb.biz!")
 
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            response = Response.new
+
+            prms = {
+                src: message_params[:To],
+                dst: message_params[:From],
+                type: 'sms',
+            }
+
+            message_body = 'howdy pardner'
+            response.addMessage(message_body, prms)
+            xml = PlivoXML.new(response)
+            puts xml.to_xml
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
+            puts "!!!!!!!!"
         # puts "***********************************"
         # puts "***********************************"
         # puts "***********************************"
@@ -45,7 +66,7 @@ class MessagesController < ApplicationController
             #     dst: message_params[:From],
             #     type: 'sms',
             # }
-            # message_body = 'Hi, Message from Plivo'
+            # message_body = 'Howdy Pardner'
             # response.addMessage(message_body, prms)
 
             # xml = PlivoXML.new(response)
