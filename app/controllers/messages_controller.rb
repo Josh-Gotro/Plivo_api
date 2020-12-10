@@ -15,30 +15,36 @@ class MessagesController < ApplicationController
     end
 
     def send_mms
-        print(params)
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")        
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(message_params)
+        puts params
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"        
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        puts message_params
                 # Create outgoing message from client request. 
         message = Message.create(
             MessageUUID: message_params[:MessageUUID],
-            Text: message_params[:Text], 
             From: message_params[:From], 
             To: message_params[:To], 
-            Gif: message_params[:media_urls[0]],
             isoutgoing: true)
 
         message_created = CLIENT.messages.create(
             message_params[:To], 
             [message_params[:From]], 
-            "Thanks for the message!")
+            "Thanks!")
+
+        puts "***********************************"
+        puts "***********************************"
+        puts "***********************************"
+        puts message_created
+        puts "***********************************"        
+        puts "***********************************"
+        puts "***********************************"
 
         
-            response = Response.new
+            # response = Response.new
 
             # prms = {
             #     src: message_params[:To],
