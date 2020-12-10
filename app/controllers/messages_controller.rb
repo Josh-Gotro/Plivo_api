@@ -1,5 +1,8 @@
 include Plivo
 
+include Plivo::XML
+include Plivo::Exceptions
+
 class MessagesController < ApplicationController
     skip_before_action :verify_authenticity_token
     auth_id = Rails.application.credentials.altplivo[:auth_id]
@@ -17,17 +20,25 @@ class MessagesController < ApplicationController
             MessageUUID: message_params[:MessageUUID],
             Text: message_params[:Text], 
             From: message_params[:From], 
-            To: params[:To], 
-            Gif: params[:Body],
+            To: message_params[:To], 
+            Gif: message_params[:Body],
             isoutgoing: false)
 
-        if message.valid?
-            message_created = CLIENT.messages.create(
-                :To, 
-                [:From], 
-                "Thanks Homie!",
-            )
+        begin
+            response = Response.new
 
+            params = {
+                src: message_params[:To],
+                dst: params[:From],
+                type: 'sms',
+            }
+            message_body = 'Hi, Message from Plivo'
+            response.addMessage(message_body, params)
+
+            xml = PlivoXML.new(response)
+            puts xml.to_xml
+            rescue PlivoXMLError => e
+            puts 'Exception: ' + e.message
         end
 
     end
@@ -108,7 +119,8 @@ private
                 :TotalRate, 
                 :Type, 
                 :Units,
-                :MediaUrl
+                :MediaUrl,
+                :Body
             )
     end
 end
