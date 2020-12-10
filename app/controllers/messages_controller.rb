@@ -27,13 +27,13 @@ class MessagesController < ApplicationController
         
             response = Response.new
 
-            params = {
-                src: message_params[:To],
-                dst: params[:From],
+            prms = {
+                src: message_prms[:To],
+                dst: prms[:From],
                 type: 'sms',
             }
             message_body = 'Hi, Message from Plivo'
-            response.addMessage(message_body, params)
+            response.addMessage(message_body, prms)
 
             xml = PlivoXML.new(response)
             puts xml.to_xml
