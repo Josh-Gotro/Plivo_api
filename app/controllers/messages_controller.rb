@@ -18,8 +18,8 @@ class MessagesController < ApplicationController
     def send_mms
 
         return_message = CLIENT.messages.create(
-        message_params[:From], 
-        [message_params[:To]], 
+        message_params[:To], 
+        [message_params[:From]], 
         "Thanks!")
 
         # response = Response.new
