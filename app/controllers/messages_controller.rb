@@ -41,36 +41,37 @@ class MessagesController < ApplicationController
 
     def phone_voice
 
-        response = Response.new
-
-        speak_body = 'Hello, you just received your first call'
-        response.addSpeak(speak_body)
-        xml = PlivoXML.new(response)   
-
-        puts xml.to_xml() # Prints the XML
-        content_type "application/xml"
-        return xml.to_s() # Returns the XML
-
-
         # response = Response.new
 
-        # first_speak_body = 'Please leave a message after the beep. Press the star key when done.'
-        # response.addSpeak(first_speak_body)
+        # speak_body = 'Hello, you just received your first call'
+        # response.addSpeak(speak_body)
+        # xml = PlivoXML.new(response)   
 
-        # params = {
-        #     action: "",
-        #     maxLength: '30',
-        #     finishOnKey: '*'
-        # }
-        # response.addRecord(params)
+        # puts xml.to_xml() # Prints the XML
+        # content_type "application/xml"
+        # return xml.to_s() # Returns the XML
 
-        # second_speak_body = 'Recording received.'
-        # response.addSpeak(second_speak_body)
 
-        # xml = PlivoXML.new(response)
-        # puts xml.to_xml
-        # rescue PlivoXMLError => e
-        #     puts 'Exception: ' + e.message
+        response = Response.new
+
+        first_speak_body = 'Please leave a message after the beep. Press the star key when done.'
+        response.addSpeak(first_speak_body)
+
+        params = {
+            action: "",
+            maxLength: '30',
+            finishOnKey: '*'
+        }
+        response.addRecord(params)
+
+        second_speak_body = 'Recording received.'
+        response.addSpeak(second_speak_body)
+
+        xml = PlivoXML.new(response)
+        puts xml.to_xml
+        rescue PlivoXMLError => e
+            puts 'Exception: ' + e.message
+        return xml.to_s()
         
     end
 
