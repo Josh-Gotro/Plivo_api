@@ -52,13 +52,13 @@ class MessagesController < ApplicationController
         }
         response.addRecord(params)
 
-        second_speak_body = 'Recording not received.'
+        second_speak_body = 'Recording received.'
         response.addSpeak(second_speak_body)
 
         xml = PlivoXML.new(response)
         puts xml.to_xml
         rescue PlivoXMLError => e
-        puts 'Exception: ' + e.message
+            puts 'Exception: ' + e.message
         end
     end
 
@@ -118,32 +118,33 @@ class MessagesController < ApplicationController
         render json: messages
     end
 
-private
-        # Protect attributes from end-user assignment. 
-        # Action Controller parameters forbidden in Active Model mass assignment until explicitly enumerated.
+    private
+    # Protect attributes from end-user assignment. 
+    # Action Controller parameters forbidden in Active Model mass assignment until explicitly enumerated.
     def message_params
             params.permit(
-                :message_time__gte, 
-                :message_time__lte, 
-                :gte, 
-                :lte, 
-                :content, 
-                :isoutgoing, 
-                :From, 
-                :MessageIntent, 
-                :MessageUUID, 
-                :PowerpackUUID, 
-                :Text, 
-                :text,
-                :To, 
-                :TotalAmount, 
-                :TotalRate, 
-                :Type, 
-                :Units,
-                :MediaUrl,
-                :media_urls,
-                :Body
+            :message_time__gte, 
+            :message_time__lte, 
+            :gte, 
+            :lte, 
+            :content, 
+            :isoutgoing, 
+            :From, 
+            :MessageIntent, 
+            :MessageUUID, 
+            :PowerpackUUID, 
+            :Text, 
+            :text,
+            :To, 
+            :TotalAmount, 
+            :TotalRate, 
+            :Type, 
+            :Units,
+            :MediaUrl,
+            :media_urls,
+            :Body
             )
+        end
     end
 end
 
