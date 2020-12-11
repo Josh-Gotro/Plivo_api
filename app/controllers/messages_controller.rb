@@ -16,39 +16,31 @@ class MessagesController < ApplicationController
     end
 
     def send_mms
-        # message_created = CLIENT.messages.create(
-        #     message_params[:From], 
-        #     [message_params[:To]], 
-        #     "U da bomb.biz!")
 
-                puts "!!!!!!!!"
-                puts "!!!!!!!!"
-                puts "!!!!!!!!"
-                puts "!!!!!!!!"
-            response = Response.new
+        response = Response.new
 
-            prms = {
-                src: message_params[:From],
-                dst: message_params[:To],
-                type: 'sms',
-            }
+        prms = {
+            src: message_params[:From],
+            dst: message_params[:To],
+            type: 'sms',
+        }
 
-            message_body = 'howdy pardner'
-            response.addMessage(message_body, prms)
-            xml = PlivoXML.new(response)
-            puts xml.to_xml
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-            puts "!!!!!!!!"
-        # puts "***********************************"
-        # puts "***********************************"
-        # puts "***********************************"
-        # puts message_created
-        # puts "***********************************"        
-        # puts "***********************************"
-        # puts "***********************************"
+        message_body = 'howdy pardner'
+        response.addMessage(message_body, prms)
+        xml = PlivoXML.new(response)
+        puts xml.to_xml
+        
+        puts "!!!!!!!!"
+        puts "!!!!!!!!"
+        puts "!!!!!!!!"
+        puts "!!!!!!!!"
+        puts "!!!!!!!!"
+
+        # return_message = CLIENT.messages.create(
+        # message_params[:From], 
+        # [message_params[:To]], 
+        # "U da bomb.biz!")
+
 
         # puts message_params
         #         # Create outgoing message from client request. 
@@ -99,20 +91,20 @@ class MessagesController < ApplicationController
         end 
     end
     
-    # def accept_sms
-    #     # Accept incoming message and persist to local API
-    #     message = Message.create(
-    #         MessageUUID: message_params[:MessageUUID],
-    #         Text: message_params[:Text], 
-    #         From: message_params[:From], 
-    #         To: params[:To], 
-    #         isoutgoing: false)
+    def accept_sms
+        # Accept incoming message and persist to local API
+        message = Message.create(
+            MessageUUID: message_params[:MessageUUID],
+            Text: message_params[:Text], 
+            From: message_params[:From], 
+            To: params[:To], 
+            isoutgoing: false)
 
-    #     # If no errors occur in new message, broadcast to React client.  
-    #     if message.valid?
-    #         ActionCable.server.broadcast 'messages_channel', message
-    #     end
-    # end
+        # If no errors occur in new message, broadcast to React client.  
+        if message.valid?
+            ActionCable.server.broadcast 'messages_channel', message
+        end
+    end
 
     def log_sms
         # Request message detail records for range: <= & >=  dates provided.
