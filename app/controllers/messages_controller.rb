@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
         response.addSpeak(first_speak_body)
 
         params = {
-            action: '',
+            action: 'https://guarded-taiga-97709.herokuapp.com/messages',
             maxLength: '30',
             finishOnKey: '*'
         }
