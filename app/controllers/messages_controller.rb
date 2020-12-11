@@ -40,37 +40,26 @@ class MessagesController < ApplicationController
     end
 
     def phone_voice
-    r = Response.new()
+        response = Response.new
 
-    getinput_action_url = "https://example.com/record_api_action/"
-    params = {
-        action: getinput_action_url, 
-        method: 'POST', 
-        digitEndTimeout: '5',
-        inputType:'dtmf',
-        redirect:'true'
-    }
-    getinput = r.addGetInput(params)
-    getinput.addSpeak("Press 1 to record this call")
+        first_speak_body = 'Please leave a message after the beep. Press the star key when done.'
+        response.addSpeak(first_speak_body)
 
-    xml = PlivoXML.new(r)
-    content_type "application/xml"
-    return xml.to_s()
-end
+        params = {
+            action: '',
+            maxLength: '30',
+            finishOnKey: '*'
+        }
+        response.addRecord(params)
 
-get '/record_api_action/' do
-    digit = params[:Digits]
-    call_uuid = params[:CallUUID]
+        second_speak_body = 'Recording not received.'
+        response.addSpeak(second_speak_body)
 
-    api = RestClient.new("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN")
-
-    if (digit == "1")
-        response = api.calls.record(call_uuid)
-        print response
-    else
-        print "Wrong Input"
-    end
-
+        xml = PlivoXML.new(response)
+        puts xml.to_xml
+        rescue PlivoXMLError => e
+        puts 'Exception: ' + e.message
+        end
     end
 
 
