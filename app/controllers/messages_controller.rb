@@ -36,13 +36,22 @@ class MessagesController < ApplicationController
         # response.addMessage(message_body, prms)
         # xml = PlivoXML.new(response)
         # puts xml.to_xml
-        
-        # puts "!!!!!!!!"
-        # puts "!!!!!!!!"
-        # puts "!!!!!!!!"
-        # puts "!!!!!!!!"
-        # puts "!!!!!!!!"
+
     end
+
+    def voice
+    response = Response.new
+
+    speak_body = 'Hello, you just received your first call'
+    response.addSpeak(speak_body)
+    xml = PlivoXML.new(response)   
+
+    puts xml.to_xml() # Prints the XML
+    content_type "application/xml"
+    return xml.to_s() # Returns the XML
+
+    end
+
 
     def send_sms
         # Create outgoing message from client request. 
