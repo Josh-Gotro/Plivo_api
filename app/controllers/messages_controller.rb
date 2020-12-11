@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
             type: 'sms',
         }
 
-        message_body = 'howdy pardner'
+        message_body = 'got it, thank you'
         response.addMessage(message_body, prms)
         xml = PlivoXML.new(response)
         puts xml.to_xml
@@ -36,10 +36,10 @@ class MessagesController < ApplicationController
         puts "!!!!!!!!"
         puts "!!!!!!!!"
 
-        # return_message = CLIENT.messages.create(
-        # message_params[:From], 
-        # [message_params[:To]], 
-        # "U da bomb.biz!")
+        return_message = CLIENT.messages.create(
+        message_params[:From], 
+        [message_params[:To]], 
+        "Thanks!")
 
 
         # puts message_params
