@@ -22,6 +22,8 @@ class MessagesController < ApplicationController
         [message_params[:From]], 
         "Thanks!")
 
+        puts return_message
+
         # response = Response.new
 
         # prms = {
