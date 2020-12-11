@@ -67,7 +67,8 @@ class MessagesController < ApplicationController
         response.addSpeak(second_speak_body)
 
         xml = PlivoXML.new(response)
-        return xml.to_xml
+        xml.to_xml
+        return xml.to_s()
         puts "!!!!!!!!!******!!!!!!!!!"
         puts "!!!!!!!!!******!!!!!!!!!"
         puts xml
