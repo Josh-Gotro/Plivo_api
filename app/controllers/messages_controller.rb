@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
 
     end
 
-    def voice
+    def phone_voice
         response = Response.new
 
         speak_body = 'Hello, you just received your first call'
@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
         xml = PlivoXML.new(response)   
 
         puts xml.to_xml() # Prints the XML
-        content_type "application/xml"
+        # content_type "application/xml"
         return xml.to_s() # Returns the XML
 
     end
