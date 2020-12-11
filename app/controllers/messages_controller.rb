@@ -59,7 +59,7 @@ class MessagesController < ApplicationController
         puts xml.to_xml
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
-        end
+        
     end
 
 
@@ -122,29 +122,28 @@ class MessagesController < ApplicationController
     # Protect attributes from end-user assignment. 
     # Action Controller parameters forbidden in Active Model mass assignment until explicitly enumerated.
     def message_params
-            params.permit(
-            :message_time__gte, 
-            :message_time__lte, 
-            :gte, 
-            :lte, 
-            :content, 
-            :isoutgoing, 
-            :From, 
-            :MessageIntent, 
-            :MessageUUID, 
-            :PowerpackUUID, 
-            :Text, 
-            :text,
-            :To, 
-            :TotalAmount, 
-            :TotalRate, 
-            :Type, 
-            :Units,
-            :MediaUrl,
-            :media_urls,
-            :Body
-            )
-        end
+        params.permit(
+        :message_time__gte, 
+        :message_time__lte, 
+        :gte, 
+        :lte, 
+        :content, 
+        :isoutgoing, 
+        :From, 
+        :MessageIntent, 
+        :MessageUUID, 
+        :PowerpackUUID, 
+        :Text, 
+        :text,
+        :To, 
+        :TotalAmount, 
+        :TotalRate, 
+        :Type, 
+        :Units,
+        :MediaUrl,
+        :media_urls,
+        :Body
+        )
     end
 end
 
