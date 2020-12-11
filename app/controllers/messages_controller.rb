@@ -59,6 +59,7 @@ class MessagesController < ApplicationController
         puts xml.to_xml
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
+        return xml
         
     end
 
