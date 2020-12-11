@@ -44,9 +44,10 @@ class MessagesController < ApplicationController
 
         first_speak_body = 'Please leave a message after the beep. Press the star key when done.'
         response.addSpeak(first_speak_body)
+        xml1 = PlivoXML.new(response)
 
         params = {
-            action: 'https://guarded-taiga-97709.herokuapp.com/messages',
+            action: xml1,
             maxLength: '30',
             finishOnKey: '*'
         }
@@ -59,7 +60,6 @@ class MessagesController < ApplicationController
         puts xml.to_xml
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
-        return xml
         
     end
 
