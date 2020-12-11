@@ -68,6 +68,12 @@ class MessagesController < ApplicationController
 
         xml = PlivoXML.new(response)
         return xml.to_xml
+        puts "!!!!!!!!!******!!!!!!!!!"
+        puts "!!!!!!!!!******!!!!!!!!!"
+        puts xml
+        puts response
+        puts "!!!!!!!!!******!!!!!!!!!"
+        puts "!!!!!!!!!******!!!!!!!!!"
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
         
