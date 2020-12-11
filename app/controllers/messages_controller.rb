@@ -58,7 +58,6 @@ class MessagesController < ApplicationController
         response.addSpeak(first_speak_body)
 
         params = {
-            action: "",
             maxLength: '30',
             finishOnKey: '*'
         }
