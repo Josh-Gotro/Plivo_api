@@ -17,56 +17,29 @@ class MessagesController < ApplicationController
 
     def send_mms
 
-        response = Response.new
-
-        prms = {
-            src: message_params[:From],
-            dst: message_params[:To],
-            type: 'sms',
-        }
-
-        message_body = 'got it, thank you'
-        response.addMessage(message_body, prms)
-        xml = PlivoXML.new(response)
-        puts xml.to_xml
-        
-        puts "!!!!!!!!"
-        puts "!!!!!!!!"
-        puts "!!!!!!!!"
-        puts "!!!!!!!!"
-        puts "!!!!!!!!"
-
         return_message = CLIENT.messages.create(
         message_params[:From], 
         [message_params[:To]], 
         "Thanks!")
 
+        # response = Response.new
 
-        # puts message_params
-        #         # Create outgoing message from client request. 
-        # message = Message.create(
-        #     MessageUUID: message_params[:MessageUUID],
-        #     From: message_params[:From], 
-        #     To: message_params[:To], 
-        #     isoutgoing: true)
+        # prms = {
+        #     src: message_params[:From],
+        #     dst: message_params[:To],
+        #     type: 'sms',
+        # }
 
-
+        # message_body = 'got it, thank you'
+        # response.addMessage(message_body, prms)
+        # xml = PlivoXML.new(response)
+        # puts xml.to_xml
         
-            # response = Response.new
-
-            # prms = {
-            #     src: message_params[:To],
-            #     dst: message_params[:From],
-            #     type: 'sms',
-            # }
-            # message_body = 'Howdy Pardner'
-            # response.addMessage(message_body, prms)
-
-            # xml = PlivoXML.new(response)
-            # puts xml.to_xml
-            # rescue PlivoXMLError => e
-            # puts 'Exception: ' + e.message
-
+        # puts "!!!!!!!!"
+        # puts "!!!!!!!!"
+        # puts "!!!!!!!!"
+        # puts "!!!!!!!!"
+        # puts "!!!!!!!!"
     end
 
     def send_sms
