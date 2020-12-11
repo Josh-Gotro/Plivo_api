@@ -68,10 +68,9 @@ class MessagesController < ApplicationController
         response.addSpeak(second_speak_body)
 
         xml = PlivoXML.new(response)
-        puts xml.to_xml
+        return xml.to_xml
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
-        return xml.to_s()
         
     end
 
