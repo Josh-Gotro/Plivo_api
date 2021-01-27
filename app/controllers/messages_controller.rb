@@ -74,8 +74,9 @@ class MessagesController < ApplicationController
         puts response
         puts "!!!!!!!!!******!!!!!!!!!"
         puts "!!!!!!!!!******!!!!!!!!!"
-        
-        return xml.to_s()
+
+        content_type "application/xml"
+        return xml.to_s
         rescue PlivoXMLError => e
             puts 'Exception: ' + e.message
         
@@ -171,7 +172,7 @@ end
 # 1. delete master.key and credentials.yml
 
 # Use Vim to update
-# Vim cheat sheet:  https://www.radford.edu/~mhtay/CPSC120/VIM_Editor_Commands.html
+# Vim cheat sheet:  https://vim.rtorr.com/
 # 2. EDITOR="vi" bin/rails credentials:edit
 # 3. :wq to save and quit vim
 
